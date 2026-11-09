@@ -1,0 +1,27 @@
+VIRTUAL CLASSROOM PHP - MODULE MAP
+
+Authentication:
+  admin_login.php, student_login.php, faculty_login.php
+  student_register.php, faculty_register.php, logout.php
+
+Dashboards and administration:
+  admin_dashboard.php, admin_approve.php
+  admin_student_requests.php, admin_faculty_requests.php
+  student_dashboard.php, faculty_dashboard.php
+
+Classroom features:
+  video-lectures.php
+  study-material.php
+  qa.php
+
+Core configuration:
+  config/database.php
+  includes/bootstrap.php
+  database.sql
+
+Uploads:
+  uploads/videos/
+  uploads/materials/
+
+Static theme retained:
+  assets/css/, assets/js/, assets/img/, assets/fonts/, assets/scss/

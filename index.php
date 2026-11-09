@@ -1,0 +1,3 @@
+<?php require 'includes/bootstrap.php'; page_start('Virtual Classroom'); ?>
+<section class="vc-card text-center"><h1>Welcome to Virtual Classroom</h1><p>Learn, teach and manage classroom activities online.</p><div class="row"><div class="col-md-4"><a class="btn btn-primary btn-block" href="student_login.php">Student Login</a><p><a href="student_register.php">Create student account</a></p></div><div class="col-md-4"><a class="btn btn-success btn-block" href="faculty_login.php">Faculty Login</a><p><a href="faculty_register.php">Register as faculty</a></p></div><div class="col-md-4"><a class="btn btn-dark btn-block" href="admin_login.php">Admin Login</a></div></div></section>
+<?php page_end(); ?>

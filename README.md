@@ -1,109 +1,70 @@
-# ONLINE-CLASSROOM
-SYSTEM CARRY ONLINE CLASSES
-ONLINE CLASSROOM — COMPLETE PHP SYSTEM
-A self-contained Online Classroom built with PHP + MySQL. The original design and assets are preserved. No external builder authentication is needed—accounts and sessions are handled entirely by PHP.
+# VIRTUAL CLASSROOM — PHP FULL COMBINED SYSTEM
 
-Modules Included
-1. Administrator
-Admin login and control panel.
+Standalone Virtual Classroom converted to **PHP + MySQL**. The original theme/assets are retained. Builder-specific authentication is not required; accounts and sessions are managed locally by PHP.
 
-Review, approve, or decline student sign-up requests.
+## Included modules
 
-Review, approve, or decline instructor sign-up requests.
+### 1. Administrator
+- Administrator sign-in and dashboard.
+- Review, approve, or reject student registration requests.
+- Review, approve, or reject faculty registration requests.
+- Access classroom content modules and manage published content.
 
-Access classroom content modules and manage published materials.
+### 2. Faculty
+- Faculty registration and sign-in (new registrations require administrator approval).
+- Faculty dashboard.
+- Publish video lectures by uploading MP4, WebM, OGG or by adding an external HTTP/HTTPS video URL.
+- Upload study materials: PDF, DOC/DOCX, PPT/PPTX, XLS/XLSX and TXT.
+- Delete their own video lectures and study materials.
+- Answer questions posted by students.
 
-2. Instructor (Faculty)
-Instructor sign-up and login (new accounts require admin approval).
+### 3. Student
+- Student registration and sign-in (new registrations require administrator approval).
+- Student dashboard.
+- Watch available video lectures.
+- Download study materials.
+- Post subject questions and view faculty/admin answers.
 
-Instructor dashboard.
+### 4. Database and security
+- MySQL schema is provided in `database.sql`.
+- PDO prepared statements are used for database operations.
+- Passwords use `password_hash()` and `password_verify()`.
+- Role-based session checks, CSRF checks on form submissions, output escaping, and upload type/size validation are included.
+- Upload directories block PHP execution on Apache using `.htaccess`.
 
-Publish video lessons by uploading MP4, WebM, OGG files or by adding an external HTTP/HTTPS video link.
+## Requirements
+- Windows XAMPP (Apache + MySQL/MariaDB) or equivalent PHP 8+ hosting.
+- PHP extensions: `pdo_mysql` and `fileinfo`.
+- For uploads, configure PHP `upload_max_filesize` and `post_max_size` to the desired upload size. The application limits videos to 200 MB and study materials to 25 MB.
 
-Upload learning resources: PDF, DOC/DOCX, PPT/PPTX, XLS/XLSX and TXT.
+## Installation on XAMPP (Windows)
 
-Remove their own video lessons and learning resources.
+1. Extract the folder `Virtual-Classroom-PHP` into `C:\xampp\htdocs\`.
+2. Open XAMPP Control Panel and start **Apache** and **MySQL**.
+3. Open `http://localhost/phpmyadmin`.
+4. Select **Import**, choose this folder's `database.sql`, and import it. The SQL creates/selects the `virtual_classroom` database and all required tables.
+5. Open `config/database.php`. The defaults are host `localhost`, database `virtual_classroom`, username `root`, and an empty password. Change them if your MySQL credentials differ.
+6. Ensure these folders exist and are writable by the web server:
+   - `uploads/videos/`
+   - `uploads/materials/`
+7. Visit `http://localhost/Virtual-Classroom-PHP/setup_admin.php` once. It creates the first administrator if no administrator exists.
+8. Sign in at `http://localhost/Virtual-Classroom-PHP/admin_login.php` with:
+   - Username: `admin`
+   - Password: `Admin@12345`
+9. **Immediately change the initial administrator password** if the application provides that option; otherwise change it directly by creating a new password hash and updating the `admin.password` field, or restrict/delete the one-time setup script after setup.
+10. Delete `setup_admin.php` from the server after the first administrator is created.
 
-Respond to questions submitted by learners.
+## Main URLs
+- Home: `http://localhost/Virtual-Classroom-PHP/`
+- Student registration: `student_register.php`
+- Faculty registration: `faculty_register.php`
+- Administrator login: `admin_login.php`
+- Video lectures: `video-lectures.php` (requires sign-in)
+- Study materials: `study-material.php` (requires sign-in)
+- Q&A forum: `qa.php` (requires sign-in)
 
-3. Learner (Student)
-Learner sign-up and login (new accounts require admin approval).
-
-Learner dashboard.
-
-Watch available video lessons.
-
-Download learning resources.
-
-Submit subject questions and view instructor/admin responses.
-
-4. Database and Security
-MySQL schema is included in database.sql.
-
-PDO prepared statements are used for all database operations.
-
-Passwords use password_hash() and password_verify().
-
-Role-based session verification, CSRF checks on form submissions, output escaping, and upload type/size validation are included.
-
-Upload directories block PHP execution on Apache using .htaccess.
-
-Requirements
-Windows XAMPP (Apache + MySQL/MariaDB) or equivalent PHP 8+ hosting.
-
-PHP extensions: pdo_mysql and fileinfo.
-
-For uploads, configure PHP upload_max_filesize and post_max_size to the desired upload size. The application limits videos to 200 MB and learning resources to 25 MB.
-
-Installation on XAMPP (Windows)
-Extract the folder Online-Classroom-PHP into C:\xampp\htdocs\.
-
-Open XAMPP Control Panel and start Apache and MySQL.
-
-Open http://localhost/phpmyadmin.
-
-Select Import, choose this folder's database.sql, and import it. The SQL creates/selects the online_classroom database and all required tables.
-
-Open config/database.php. The defaults are host localhost, database online_classroom, username root, and an empty password. Change them if your MySQL credentials differ.
-
-Ensure these folders exist and are writable by the web server:
-
-uploads/videos/
-
-uploads/materials/
-
-Visit http://localhost/Online-Classroom-PHP/setup_admin.php once. It creates the first administrator if no administrator exists.
-
-Sign in at http://localhost/Online-Classroom-PHP/admin_login.php with:
-
-Username: admin
-
-Password: Admin@12345
-
-Immediately change the initial administrator password if the application provides that option; otherwise change it directly by creating a new password hash and updating the admin.password field, or restrict/delete the one-time setup script after setup.
-
-Delete setup_admin.php from the server after the first administrator is created.
-
-Main URLs
-Home: http://localhost/Online-Classroom-PHP/
-
-Learner registration: student_register.php
-
-Instructor registration: faculty_register.php
-
-Administrator login: admin_login.php
-
-Video lessons: video-lectures.php (requires sign-in)
-
-Learning resources: study-material.php (requires sign-in)
-
-Q&A forum: qa.php (requires sign-in)
-
-Important Notes
-Learner and instructor accounts remain pending until an administrator approves them.
-
-This is a fresh standalone PHP/MySQL installation. Import the supplied database.sql into a new/empty online_classroom database; do not import the old JSP project's database dump over it.
-
-Video URL entries are saved as external links; uploaded video files are played in the browser when the format is supported.
-
-The project was syntax-checked with PHP CLI and the ZIP archive integrity was checked. A live database/browser test requires running it in your own XAMPP/hosting environment with MySQL configured.
+## Important notes
+- Student and faculty accounts remain pending until an administrator approves them.
+- This is a fresh standalone PHP/MySQL installation. Import the supplied `database.sql` into a **new/empty** `virtual_classroom` database; do not import the old JSP project's database dump over it.
+- Video URL entries are saved as external links; uploaded video files are played in the browser when the format is supported.
+- The project was syntax-checked with PHP CLI and the ZIP archive integrity was checked. A live database/browser test requires running it in your own XAMPP/hosting environment with MySQL configured.

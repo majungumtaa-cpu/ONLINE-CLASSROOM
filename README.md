@@ -1,4 +1,4 @@
-# VIRTUAL CLASSROOM — PHP FULL COMBINED SYSTEM
+# ONLINE CLASSROOM — PHP FULL COMBINED SYSTEM
 
 Standalone Virtual Classroom converted to **PHP + MySQL**. The original theme/assets are retained. Builder-specific authentication is not required; accounts and sessions are managed locally by PHP.
 

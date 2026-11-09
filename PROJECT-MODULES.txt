@@ -1,4 +1,4 @@
-VIRTUAL CLASSROOM PHP - MODULE MAP
+ONLINE CLASSROOM PHP - MODULE MAP
 
 Authentication:
   admin_login.php, student_login.php, faculty_login.php
